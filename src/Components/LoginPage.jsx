@@ -37,17 +37,10 @@ export default class LoginForm extends React.Component{
     handleSubmit = async (e) =>{
         e.preventDefault()
         const {title,salary,companyName,location,remote,logo,date} = this.state
-        const allData = [...this.state.allJobData]
-        const id = allData[allData.length - 1].id + 1
         const obj = {
             id:id,
             date:date,
             title : title,
-            salary : salary,
-            companyName : companyName,
-            location : location,
-            remote : remote,
-            logo : logo,
         }
         const postDataLink = "http://localhost:3004/jobDetails"
         try{
