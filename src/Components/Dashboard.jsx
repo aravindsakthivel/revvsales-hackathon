@@ -2,7 +2,6 @@ import React from 'react'
 import data from './data.json'
 import Styled from 'styled-components'
 
-
 const DashBoardWrapper=Styled.div`
     background:white;
     color:black;
@@ -13,9 +12,9 @@ const DashBoardWrapper=Styled.div`
     }
 `
 
-
+var i=0
 export default function Dashboard(props){
-    const {first_name,last_name}=props    
+    const {first_name,last_name,handleAuth}=props    
     return(
         <DashBoardWrapper>
             <div className="row">
@@ -26,6 +25,16 @@ export default function Dashboard(props){
                         <span className="navbar-toggler-icon"></span>
                         </button>
                         <h1 style={{color:"white"}}>{first_name+last_name}</h1>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Create documents
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
                         <img src={"https://via.placeholder.com/150"} 
                             style={{width:"50px",height:"50px",borderRadius:"50%"}}
                             alt={first_name+last_name}
@@ -44,39 +53,49 @@ export default function Dashboard(props){
                 <div className="col">
                     <div className="row" style={{marginTop:"70px"}}>
                         <div className="col-2" style={{border:"1px solid black",height:"900px",background:"rgb(38, 50, 56)"}}>
-                                <a href="#para1" data-toggle="collapse" data-target="#para1" className="content"><div className="ml-2">Timetable</div></a>
-                                <a href="#para2" data-toggle="collapse" data-target="#para2" className="content"><div className="ml-2">Events</div></a>
-                                <a href="#para3" data-toggle="collapse" data-target="#para3" className="content"><div className="ml-2">Attendance</div></a>
-                                <a href="#para4" data-toggle="collapse" data-target="#para4" className="content"><div className="ml-2">Fees</div></a>
-                                <a href="#para5" data-toggle="collapse" data-target="#para5" className="content"><div className="ml-2">Announcements</div></a>
-                                <a href="#para6" data-toggle="collapse" data-target="#para6" className="content"><div className="ml-2">My Subjects</div></a>
-                                <a href="#para7" data-toggle="collapse" data-target="#para7" className="content"><div className="ml-2">Gallery</div></a>
-                                <a href="#para8" data-toggle="collapse" data-target="#para8" className="content"><div className="ml-2">Exam Reports</div></a>
+                                <a href="#para1" className="content"><div className="ml-2">Timetable</div></a>
+                                <a href="#para2" className="content"><div className="ml-2">Events</div></a>
+                                <a href="#para3" className="content"><div className="ml-2">Attendance</div></a>
+                                <a href="#para4" className="content"><div className="ml-2">Fees</div></a>
+                                <a href="#para5" className="content"><div className="ml-2">Announcements</div></a>
+                                <a href="#para6" className="content"><div className="ml-2">My Subjects</div></a>
+                                <a href="#para7" className="content"><div className="ml-2">Gallery</div></a>
+                                <a href="#para8" className="content"><div className="ml-2">Exam Reports</div></a>
+                                <button type = 'button' className = 'btn btn-danger ml-2 mt-2' onClick={handleAuth}>LogOut</button>
                         </div>                   
                         <div  className="col-10">
                             <div id="para1" className="collapse in ">
-                                Time table for class1
+                                Time table 
                             </div>
                             <div id="para2" className="collapse">
-                                Time table for class1
+                                Events
                             </div>
                             <div id="para3" className="collapse">
-                                Time table for class1
+                                Attendance
                             </div>
                             <div id="para4" className="collapse">
-                                Time table for class1
+                                Fees
                             </div>
                             <div id="para5" className="collapse">
-                                Time table for class1
+                                Announcements
                             </div>
                             <div id="para6" className="collapse">
-                                Time table for class1
+                                My Subjects
                             </div>
                             <div id="para7" className="collapse">
-                                Time table for class1
+                                <div className="row">
+                                {Object.values(data[0].gallaryView).map((item)=>(
+                                    
+                                        <div className="col-12 col-md-6 col-lg-4">
+                                            <div>                                               
+                                                <img src={item} height="200px" width="200px" alt={i} style={{margin:"10px"}} />                                                  
+                                            </div>
+                                        </div>
+                                ))}
+                                </div>
                             </div>
                             <div id="para8" className="collapse">
-                                Time table for class1
+                                Exam Reports
                             </div>
                         </div>
                     </div>
@@ -87,3 +106,5 @@ export default function Dashboard(props){
             
     )
 }
+
+
