@@ -8,15 +8,20 @@ export default class AppContextProvider extends React.Component{
     {
         super(props)
         this.state={
-            last_name:'',
-            first_name:'',
+            last_name:'Aravind',
+            first_name:'Sakthivel ',
             userName:'',
             password:'',
             accessKey:'',
-            isAuth:false,
-            refreshToken:''
+            isAuth:true,
+            refreshToken:'',
+            showFeesForm:false,
+            documentTitle:'',
+            show:"",
         }
     }
+
+
     handleInput = (e) =>{
         const {name, value} = e.target
         this.setState({
@@ -57,15 +62,49 @@ export default class AppContextProvider extends React.Component{
     }
 
 
+    createDocument = async (e) => {
+        e.preventDefault()
+        const headerConfig = {
+            headers: {
+                'AccessToken': this.state.accessKey,
+                'Content-Type': 'application/json'
+            }
+        };
+        const credentials = {
+            "template_id":1,
+            "title": this.state.documentTitle
+        }
+        const createDocumentApi = 'https://ft9olktt.revvsales.com/api/docs'
+        try{
+            const createDocument = await axios.post(createDocumentApi, credentials, headerConfig)
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    showProcess = (which) => {
+        console.log(which)
+        this.setState({
+            show:which
+        })
+    }
+
+    handleAuth=()=>{
+        this.setState({isAuth:false})
+    }
+
     render()
     {
-        const {username,password,accessKey,isAuth,first_name,last_name}=this.state
-        const {handleInput,handleSubmit}=this
-        const value={username,password,accessKey,isAuth,first_name,last_name,handleInput,handleSubmit}
+        const {username,password,accessKey,isAuth,first_name,last_name,refreshToken, showFeesForm, documentTitle, show}=this.state
+        const {handleInput,handleSubmit, handleAuth,createDocument, showProcess}=this
+        const value={username,password,accessKey,isAuth,first_name,last_name,refreshToken, showFeesForm, documentTitle, show, handleInput, handleSubmit,handleAuth, createDocument, showProcess}
         return(
             <AppContext.Provider value={value} >
-                    {this.props.children}
+                {this.props.children}
             </AppContext.Provider>
         )
     }
+
 }
