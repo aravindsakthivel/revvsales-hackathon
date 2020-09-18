@@ -11,11 +11,10 @@ class HomePage extends React.Component{
         const {isAuth , first_name , last_name , handleInput , handleAuth, handleSubmit , ...value} = this.context
     return (
         <div>
-            {!isAuth?
+            {isAuth?
+                <DashboardAdmin first_name={first_name} last_name={last_name} handleAuth={handleAuth}/>
+                :
                 <LoginPage value={value} handleInput={handleInput} handleSubmit={handleSubmit}/>
-                : value.userName==="aravindan.sakthivel@outlook.com" ? 
-                <Dashboard first_name={first_name} last_name={last_name} handleAuth={handleAuth}/>
-                :<DashboardAdmin first_name={first_name} last_name={last_name} handleAuth={handleAuth}/>
             }
         </div>
     );
