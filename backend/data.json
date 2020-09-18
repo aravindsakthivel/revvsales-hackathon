@@ -1,0 +1,31 @@
+[
+    {
+        "applicationNo":1,
+        "name":"Soundarya",
+        "emailId":"soundaryasakthi13@gmail.com",
+        "grade":"4 Grade C",
+        "academicYear":"2020-2021",
+        "attendance":"85%",
+        "fees":{
+            "firstTerm": 20000,
+            "isFirstTermPaid" : false,
+            "secondTerm":15000,
+            "isSecondTermPaid":false,
+            "thirdTerm":10000,
+            "isThirdTermPaid":false,
+            "bookFees":8000,
+            "isBookFeesPaid":false,
+            "hostalFees":16000,
+            "isHostelFeesPaid":false
+        },
+        "avatar":"https://avatars0.githubusercontent.com/u/63995229?s=60&v=4",
+        "gallaryView":{
+            "image1":"https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+            "image2":"https://upload.wikimedia.org/wikipedia/commons/a/a9/Lander_College_Old_Main_Building.jpg",
+            "image3":"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRgFmTi-XS4YNoYVSsJh3EDzenVpL62zBPDrA&usqp=CAU",
+            "image4":"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQdDWpru3j-xvFKvw6hjsZlcCyolj78UOxtJg&usqp=CAU"
+        },
+        "examReports":""        
+    }
+    
+]

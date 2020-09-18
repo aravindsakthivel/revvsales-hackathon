@@ -8,15 +8,17 @@ export default class AppContextProvider extends React.Component{
     {
         super(props)
         this.state={
-            last_name:'Aravind',
-            first_name:'Sakthivel ',
+            display:false,
+            last_name:'',
+            first_name:'',
             userName:'',
             password:'',
             accessKey:'',
-            isAuth:true,
+            isAuth:false,
             refreshToken:'',
             showFeesForm:false,
             documentTitle:'',
+            document_no:"DOC-000040",
             show:"",
         }
     }
@@ -52,7 +54,8 @@ export default class AppContextProvider extends React.Component{
                 isAuth:true,
                 first_name:loginRequestData.data.User.first_name,
                 last_name:loginRequestData.data.User.last_name,
-                refresh_token:loginRequestData.data.User.refresh_token
+                refresh_token:loginRequestData.data.User.refresh_token,
+                display:true
             })
             console.log(loginRequestData.data.User.access_token)
         }
@@ -62,8 +65,8 @@ export default class AppContextProvider extends React.Component{
     }
 
 
-    createDocument = async (e) => {
-        e.preventDefault()
+    createDocument = async (which) => {
+        // e.preventDefault()
         const headerConfig = {
             headers: {
                 'AccessToken': this.state.accessKey,
@@ -71,17 +74,22 @@ export default class AppContextProvider extends React.Component{
             }
         };
         const credentials = {
-            "template_id":1,
+            "template_id":21,
             "title": this.state.documentTitle
         }
         const createDocumentApi = 'https://ft9olktt.revvsales.com/api/docs'
         try{
             const createDocument = await axios.post(createDocumentApi, credentials, headerConfig)
+            console.log(createDocument.data.Document.doc_no)
+            this.setState({
+                document_no:createDocument.data.Document.doc_no
+            })
         }
         catch (error) {
             console.log(error);
         }
     }
+
 
 
     showProcess = (which) => {
@@ -92,19 +100,19 @@ export default class AppContextProvider extends React.Component{
     }
 
     handleAuth=()=>{
-        this.setState({isAuth:false})
+        this.setState({isAuth:false,
+                    display:false})
     }
 
     render()
     {
-        const {username,password,accessKey,isAuth,first_name,last_name,refreshToken, showFeesForm, documentTitle, show}=this.state
+        const {userName,password,accessKey,isAuth,first_name,last_name,refreshToken, showFeesForm, documentTitle, show,display,document_no}=this.state
         const {handleInput,handleSubmit, handleAuth,createDocument, showProcess}=this
-        const value={username,password,accessKey,isAuth,first_name,last_name,refreshToken, showFeesForm, documentTitle, show, handleInput, handleSubmit,handleAuth, createDocument, showProcess}
+        const value={userName,password,accessKey,isAuth,first_name,last_name,refreshToken, display,showFeesForm, documentTitle, show,document_no, handleInput, handleSubmit,handleAuth, createDocument, showProcess}
         return(
             <AppContext.Provider value={value} >
                 {this.props.children}
             </AppContext.Provider>
         )
     }
-
 }

@@ -5,8 +5,8 @@ import Form from './Form'
 
 const Wrapper = styled.div`
     position:relative;
-    top: 170px;
-    left:400px;
+    bottom: 400px;
+    left:700px;
     h3{
         margin-left:40%;
     }

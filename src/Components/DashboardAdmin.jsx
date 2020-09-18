@@ -3,9 +3,9 @@ import data from './data.json'
 import Styled from 'styled-components'
 import {AppContext} from './Appcontext'
 import FeesForm from './FeesForm'
-import axios from 'axios'
+//import axios from 'axios'
 import Announcement from './announcementForm'
-import { v4 as uuidv4 } from 'uuid'
+//import { v4 as uuidv4 } from 'uuid'
 
 
 const DashBoardWrapper=Styled.div`
@@ -15,6 +15,20 @@ const DashBoardWrapper=Styled.div`
         margin-left:20px;       
         text-decoration:none;
         color:rgb(244, 143, 177);
+    }
+    .navbar .dropdown-menu {
+        background-color: #4CAF50;
+    }
+    .dropdown-toggle{
+        background-color: #4CAF50;
+        border:none;
+    }    
+    
+    .dropdown-toggle:hover{
+        background-color: blue;
+    }
+    .navbar .dropdown.show a { 
+        background-color: blue;
     }
 `
 
@@ -37,10 +51,10 @@ export default class DashboardAdmin extends React.Component{
                                 <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Create documents
                                 </button>
-                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div className="dropdown-menu" style={{backgroundColor:"green"}} aria-labelledby="dropdownMenuButton">
                                     <button className="dropdown-item" onClick = {() => showProcess('announce')}>Announcement</button>
                                     <button className="dropdown-item" onClick = {() => showProcess('fees')}>Fees</button>
-                                    <button className="dropdown-item">Waiting</button>
+                                    {/* <button className="dropdown-item">Waiting</button> */}
                                 </div>
                             </div>
                             <img src={"https://via.placeholder.com/150"} 
